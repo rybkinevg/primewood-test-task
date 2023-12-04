@@ -1,0 +1,84 @@
+<form id="form-product-create"
+      action="/products"
+      method="POST"
+      x-data="createProductForm()"
+      @submit.prevent="submitForm">
+    <div class="form__control">
+        <label for="title">Title</label>
+        <input name="title"
+               id="title"
+               required
+               x-model="form.title"
+               :class="{'error': errors.title}"/>
+        <span x-show="errors.title"
+              x-text="errors.title && errors.title[0]"
+              class="error__message"></span>
+    </div>
+    <div class="form__control">
+        <label for="price">Price</label>
+        <input name="price"
+               id="price"
+               required
+               x-model="form.price"
+               :class="{'error': errors.price}"/>
+        <span x-show="errors.price"
+              x-text="errors.price && errors.price[0]"
+              class="error__message"></span>
+    </div>
+    <div class="form__control">
+        <label for="created_at">Date and time</label>
+        <input name="created_at"
+               id="created_at"
+               required
+               x-model="form.created_at"
+               :class="{'error': errors.created_at}"/>
+        <span x-show="errors.created_at"
+              x-text="errors.created_at && errors.created_at[0]"
+              class="error__message"></span>
+    </div>
+</form>
+
+<script>
+    function createProductForm() {
+        return {
+            errorMessage: null,
+            errors: [],
+            form: {
+                title: "",
+                price: "",
+                created_at: "",
+            },
+            async submitForm() {
+                const options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify(this.form),
+                };
+
+                const response = await fetch('/api/products', options)
+                const json = await response.json();
+
+                if (!response.ok) {
+                    this.errorMessage = json.message;
+                    this.errors = json.errors;
+
+                    return;
+                }
+
+                this.form = {
+                    title: "",
+                    price: "",
+                    created_at: "",
+                };
+
+                const modalCloseTrigger = document.querySelector('.modal-close-trigger');
+                modalCloseTrigger.click();
+
+                window.dispatchEvent(new CustomEvent('product:created'));
+            },
+        };
+    }
+</script>

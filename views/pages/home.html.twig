@@ -1,0 +1,62 @@
+{% extends 'layouts/index.html.twig' %}
+
+{% block title %}PrimeWood - Items in stock{% endblock %}
+{% block page_title %}Items in stock{% endblock %}
+
+{% block content %}
+
+    <div class="products__content"
+         x-data="productList()"
+         x-init="fetchProducts()"
+         @product:created.window="fetchProducts()">
+
+        {% include 'templates/product/product-table.html.twig' %}
+
+        <div class="products__footer">
+            <button class="button button-primary modal-open-trigger">New item</button>
+        </div>
+
+        <div class="modal">
+            <div class="modal__container">
+                <div class="modal__header">
+                    <span>New Item</span>
+                    <span class="button modal-close-trigger">&times;</span>
+                </div>
+
+                <div class="modal__body">
+                    {% include 'templates/product/product-form.html.twig' %}
+                </div>
+
+                <div class="modal__footer">
+                    <button type="button" class="button button-secondary modal-close-trigger">Close</button>
+                    <button type="submit"
+                            form="form-product-create"
+                            class="button button-primary">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function productList() {
+            return {
+                products: [],
+                async fetchProducts() {
+                    const response = await fetch('/api/products', {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                        },
+                    });
+
+                    const json = await response.json();
+
+                    this.products = json.data;
+                },
+            };
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+<table class="products__table">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Price, USD</th>
+        <th>Date and time</th>
+    </tr>
+    <template
+            x-show="products && products.length"
+            x-for="product in products"
+            :key="product?.id"
+    >
+        <tr>
+            <td x-text="product?.id"></td>
+            <td x-text="product?.title"></td>
+            <td x-text="product?.price"></td>
+            <td x-text="product?.created_at"></td>
+        </tr>
+    </template>
+
+</table>

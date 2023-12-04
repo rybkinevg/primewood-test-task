@@ -1,0 +1,167 @@
+/** Base */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+.header__logo {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.header__title {
+    font-weight: bold;
+    color: red;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-primary {
+    color: white;
+    background-color: red;
+}
+
+.button-secondary {
+    color: white;
+    background-color: dimgray;
+}
+
+/** Products */
+
+.products__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.products__table th, td {
+    padding: 15px;
+    border-top: 1px solid;
+    border-color: lightgray;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.products__table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.products__footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.products__footer .button {
+    width: 60%;
+}
+
+/** Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__container {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.modal__body {
+    padding: 20px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.modal__footer button:not(:last-child) {
+    margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+    .modal__container {
+        width: 90%;
+    }
+}
+
+/** Form */
+
+.form__control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form__control label {
+    margin-bottom: 5px;
+}
+
+.form__control input {
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.form__control input.error {
+    border: 1px solid red;
+}
+
+.form__control .error__message {
+    margin-top: 5px;
+    color: red;
+}
