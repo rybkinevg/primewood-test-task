@@ -12,6 +12,8 @@
 
         {% include 'templates/product/product-table.html.twig' %}
 
+        <p x-show="products.length == 0">Products not found</p>
+
         <div class="products__footer">
             <button class="button button-primary modal-open-trigger">New item</button>
         </div>
