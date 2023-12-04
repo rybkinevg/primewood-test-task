@@ -14,11 +14,13 @@
 composer install
 ```
 
-- Create the `.env` file:
+- Create the `.env` file from sample:
 
 ```shell
 cp .env.example .env
 ```
+
+- Configure database connection in the `.env` file
 
 - Import SQL dump from `database/dump.sql`
 
